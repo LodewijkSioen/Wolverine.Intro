@@ -1,6 +1,6 @@
-﻿namespace Wolverine.Intro.Tests._04.FluentValidation;
+﻿namespace Wolverine.Intro.Tests._04.Validation;
 
-public class FluentValidationTests
+public class ValidationTests
 {
     [Test]
     public async Task HappyPath()

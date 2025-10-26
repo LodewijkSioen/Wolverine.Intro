@@ -8,7 +8,7 @@ using Wolverine.FluentValidation;
 using Wolverine.Http;
 using Wolverine.Http.FluentValidation;
 using Wolverine.Intro.Api;
-using Wolverine.Intro.Api.FluentValidation;
+using Wolverine.Intro.Api.Validation;
 using Wolverine.Intro.Api.Middleware;
 using Wolverine.Intro.Api.Outbox;
 using Wolverine.SqlServer;

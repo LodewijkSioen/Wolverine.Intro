@@ -9,7 +9,7 @@ using Wolverine.Http.CodeGen;
 
 // Wolverine does't like numbers in the namespace
 // ReSharper disable once CheckNamespace
-namespace Wolverine.Intro.Api.FluentValidation;
+namespace Wolverine.Intro.Api.Validation;
 
 public class DataAnnotationsValidationPolicy : IHttpPolicy
 {
