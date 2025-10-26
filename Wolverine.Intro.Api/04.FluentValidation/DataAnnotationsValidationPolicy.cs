@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using Wolverine.Http;
 using Wolverine.Http.CodeGen;
-using Wolverine.Runtime;
 
 
 // Wolverine does't like numbers in the namespace
@@ -14,7 +13,7 @@ namespace Wolverine.Intro.Api.FluentValidation;
 
 public class DataAnnotationsValidationPolicy : IHttpPolicy
 {
-    public void Apply(IReadOnlyList<HttpChain> chains, GenerationRules rules, IServiceContainer container)
+    public void Apply(IReadOnlyList<HttpChain> chains, GenerationRules rules, JasperFx.IServiceContainer container)
     {
         foreach (var chain in chains.Where(x => x.HasRequestType))
         {
@@ -22,7 +21,7 @@ public class DataAnnotationsValidationPolicy : IHttpPolicy
         }
     }
 
-    public void Apply(HttpChain chain, IServiceContainer container)
+    public void Apply(HttpChain chain, JasperFx.IServiceContainer container)
     {
         chain.Metadata.ProducesValidationProblem();
 
