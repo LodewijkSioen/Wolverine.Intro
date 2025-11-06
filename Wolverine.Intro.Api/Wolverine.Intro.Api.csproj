@@ -24,6 +24,8 @@
     <PackageReference Include="WolverineFx.Http" Version="5.0.0" />
 
     <PackageReference Include="WolverineFx.Http.FluentValidation" Version="5.0.0" />
+
+    <PackageReference Include="WolverineFx.SignalR" Version="5.0.0" />
     <PackageReference Include="WolverineFx.SqlServer" Version="5.0.0" />
   </ItemGroup>
 </Project>
