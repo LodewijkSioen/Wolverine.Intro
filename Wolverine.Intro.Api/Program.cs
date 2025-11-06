@@ -85,7 +85,7 @@ app.MapWolverineEndpoints(opts =>
     opts.AddPolicy<DataAnnotationsValidationPolicy>();
     opts.WarmUpRoutes = RouteWarmup.Eager;
 });
-app.MapHub<WolverineHub>("_realtime");
-
+app.MapWolverineSignalRHub("_realtime")
+    .AllowAnonymous();
 
 await app.RunJasperFxCommands(args);
