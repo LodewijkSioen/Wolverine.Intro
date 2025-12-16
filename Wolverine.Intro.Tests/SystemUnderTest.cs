@@ -1,6 +1,5 @@
 ﻿using Alba;
 using JasperFx.CommandLine;
-using JasperFx.Core;
 using JasperFx.Resources;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,12 +25,12 @@ public class SystemUnderTest
     public async Task Init()
     {
         JasperFxEnvironment.AutoStartHost = true;
-        //var options = new DbContextOptionsBuilder<TestDbContext>()
-        //    .UseSqlServer(ConnectionString)
-        //    .Options;
-        //await using var dbContext = new TestDbContext(options);
-        //await dbContext.Database.EnsureDeletedAsync();
-        //await dbContext.Database.MigrateAsync();
+        var options = new DbContextOptionsBuilder<TestDbContext>()
+            .UseSqlServer(ConnectionString)
+            .Options;
+        await using var dbContext = new TestDbContext(options);
+        await dbContext.Database.EnsureDeletedAsync();
+        await dbContext.Database.MigrateAsync();
 
         _snapshot = await Respawner.CreateAsync(ConnectionString, new()
         {
