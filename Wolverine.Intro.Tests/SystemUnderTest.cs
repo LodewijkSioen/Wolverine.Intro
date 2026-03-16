@@ -1,6 +1,7 @@
 ﻿using Alba;
 using JasperFx.CommandLine;
 using JasperFx.Resources;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -32,7 +33,9 @@ public class SystemUnderTest
         await dbContext.Database.EnsureDeletedAsync();
         await dbContext.Database.MigrateAsync();
 
-        _snapshot = await Respawner.CreateAsync(ConnectionString, new()
+        await using var conn = new SqlConnection(ConnectionString);
+        await conn.OpenAsync();
+        _snapshot = await Respawner.CreateAsync(conn, new()
         {
             SchemasToExclude = ["wolverine"],
             TablesToIgnore = ["__EFMigrationsHistory"]
@@ -57,7 +60,10 @@ public class SystemUnderTest
         await Host.ResetResourceState();
         await using var store = Host.Services.GetRequiredService<IMessageStore>();
         await store.Admin.ClearAllAsync();
-        await _snapshot.ResetAsync(ConnectionString);
+
+        await using var conn = new SqlConnection(ConnectionString);
+        await conn.OpenAsync();
+        await _snapshot.ResetAsync(conn);
     }
 
     [OneTimeTearDown]

@@ -12,7 +12,6 @@ using Wolverine.Intro.Api;
 using Wolverine.Intro.Api.Middleware;
 using Wolverine.Intro.Api.Outbox;
 using Wolverine.Intro.Api.SignalR;
-using Wolverine.Intro.Api.Validation;
 using Wolverine.SignalR;
 using Wolverine.SqlServer;
 
@@ -82,7 +81,7 @@ app.MapWolverineEndpoints(opts =>
 {
     opts.AddHeaderMiddleware();
     opts.UseFluentValidationProblemDetailMiddleware();
-    opts.AddPolicy<DataAnnotationsValidationPolicy>();
+    opts.UseDataAnnotationsValidationProblemDetailMiddleware();
     opts.WarmUpRoutes = RouteWarmup.Eager;
 });
 app.MapWolverineSignalRHub("_realtime")

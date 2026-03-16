@@ -14,7 +14,10 @@ public class CascadingEndpoint
     {
         logger.LogInformation("Request Handled");
 
-        return (Results.Ok("Ok"), [new Response1(), new Response2()]);
+        return (Results.Ok("Ok"), [
+            new Response1(), 
+            new Response2()
+        ]);
     }
 
 }
